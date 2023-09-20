@@ -13,12 +13,19 @@
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "preserve",
+    "allowJs": true,
 
     /* Linting */
     "strict": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "noFallthroughCasesInSwitch": true
+    "noFallthroughCasesInSwitch": true,
+
+    /* Dynamic imports */
+    "paths": {
+      "vveb3": ["./lib/index.ts"],
+      "vveb3/*": ["./lib/*"]
+    }
   },
   "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue"],
   "references": [{ "path": "./tsconfig.node.json" }]

@@ -1,6 +1,8 @@
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import { resolve } from 'path'
+import postcssGlobalData from '@csstools/postcss-global-data'
+import postCssPresetEnv from 'postcss-preset-env'
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -18,6 +20,31 @@ export default defineConfig({
           vue: 'Vue',
         },
       },
+    },
+  },
+  resolve: {
+    alias: {
+      vveb3: resolve(__dirname, './lib'),
+    },
+  },
+  css: {
+    postcss: {
+      plugins: [
+        postcssGlobalData({
+          files: [
+            resolve(__dirname, './lib/styles/custom-media.css'),
+            resolve(__dirname, './lib/styles/custom-selectors.css'),
+          ],
+        }),
+        postCssPresetEnv({
+          stage: 1,
+          features: {
+            'nesting-rules': {
+              noIsPseudoSelector: false,
+            }
+          }
+        }),
+      ],
     },
   },
 })
