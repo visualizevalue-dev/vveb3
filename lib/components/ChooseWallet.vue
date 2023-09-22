@@ -2,7 +2,7 @@
   <div>
     <button
       :disabled="!ic.ready"
-      @click="connectWallet(ic)"
+      @click="() => connectWallet(ic)"
       class="base"
     >
       <template v-if="ic.name === 'Coinbase Wallet'">
@@ -17,7 +17,7 @@
     </button>
 
     <button
-      @click="connectWallet(wc)"
+      @click="() => connectWallet(wc)"
       class="base"
     >
       <img src="/wc.svg" alt="WalletConnect" />
