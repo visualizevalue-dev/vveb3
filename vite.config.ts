@@ -14,7 +14,12 @@ export default defineConfig({
       fileName: 'vveb3',
     },
     rollupOptions: {
-      external: ['vue', '@wagmi/core'],
+      external: [
+        '@wagmi/chains',
+        '@wagmi/core',
+        'viem',
+        'vue',
+      ],
       output: {
         globals: {
           vue: 'Vue',
