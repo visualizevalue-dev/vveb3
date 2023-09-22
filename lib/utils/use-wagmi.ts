@@ -1,4 +1,4 @@
-import { computed, reactive, ref, toRefs, watch } from 'vue'
+import { Ref, computed, reactive, ref, toRefs, watch } from 'vue'
 import {
   Connector,
   FetchEnsNameResult,
@@ -6,8 +6,11 @@ import {
   fetchEnsAvatar,
   fetchEnsName,
   mainnet,
+  getAccount,
   watchAccount,
   watchNetwork,
+  GetAccountResult,
+  getNetwork,
 } from '@wagmi/core'
 import { getBlockExplorer, getChainName } from './chain'
 import { GetEnsAvatarReturnType } from 'viem/ens';
@@ -33,31 +36,37 @@ const account = reactive<{
 })
 
 // WATCHERS
-let unwatchAccount;
-let unwatchNetwork;
+let unwatchAccount: () => void;
+let unwatchNetwork: () => void;
 
 const chain = computed(() => account.network?.chain || mainnet)
 const chainId = computed<number>(() => chain.value?.id)
 const blockExplorer = computed(() => getBlockExplorer(chainId.value))
 const networkName = computed(() => getChainName(chainId.value) || chain.value?.name || 'Unknown Chain')
 
+const setAccount = (result: GetAccountResult) => {
+  account.address = result.address
+  account.connector = result.connector
+  account.isConnected = result.isConnected
+  account.isConnecting = result.isConnecting
+  account.isDisconnected = result.isDisconnected
+  account.isReconnecting = result.isReconnecting
+  account.status = result.status
+}
+const setNetwork = (result: GetNetworkResult) => {
+  account.network = result
+}
+
 export const useAccount = () => {
+  setAccount(getAccount())
+  setNetwork(getNetwork())
+
   if (! unwatchAccount) {
-    unwatchAccount = watchAccount(updatedAccount => {
-      account.address = updatedAccount.address
-      account.connector = updatedAccount.connector
-      account.isConnected = updatedAccount.isConnected
-      account.isConnecting = updatedAccount.isConnecting
-      account.isDisconnected = updatedAccount.isDisconnected
-      account.isReconnecting = updatedAccount.isReconnecting
-      account.status = updatedAccount.status
-    })
+    unwatchAccount = watchAccount(updatedAccount => setAccount(updatedAccount))
   }
 
   if (! unwatchNetwork) {
-    unwatchNetwork = watchNetwork(network => {
-      account.network = network
-    })
+    unwatchNetwork = watchNetwork(network => setNetwork(network))
   }
 
   return {
@@ -67,7 +76,7 @@ export const useAccount = () => {
   }
 }
 
-export const useEnsName = (address) => {
+export const useEnsName = (address: Ref) => {
   const name = ref<FetchEnsNameResult>('')
 
   const update = async () => {
@@ -81,7 +90,7 @@ export const useEnsName = (address) => {
   return name
 }
 
-export const useEnsAvatar = (name) => {
+export const useEnsAvatar = (name: Ref) => {
   const avatar = ref<GetEnsAvatarReturnType>('')
 
   const update = async () => {

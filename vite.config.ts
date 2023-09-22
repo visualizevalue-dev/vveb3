@@ -9,12 +9,12 @@ export default defineConfig({
   plugins: [vue()],
   build: {
     lib: {
-      entry: resolve(__dirname, './lib/main.ts'),
+      entry: resolve(__dirname, './lib/index.ts'),
       name: 'VVeb3',
       fileName: 'vveb3',
     },
     rollupOptions: {
-      external: ['vue'],
+      external: ['vue', '@wagmi/core'],
       output: {
         globals: {
           vue: 'Vue',

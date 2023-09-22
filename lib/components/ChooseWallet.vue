@@ -44,7 +44,7 @@ const { walletConnectProjectId, rpc } = defineProps({
 })
 const emit = defineEmits(['connected', 'closeContext'])
 
-const { isConnecting } = useAccount()
+const { isConnecting, address } = useAccount()
 
 const ic = new InjectedConnector()
 const mm = new MetaMaskConnector()
