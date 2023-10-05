@@ -16,6 +16,7 @@
     "@csstools/postcss-global-data": "^2.1.0",
     "@types/node": "^20.6.3",
     "@vitejs/plugin-vue": "^4.2.3",
+    "@vueuse/core": "^10.4.1",
     "@wagmi/chains": "^1.8.0",
     "@wagmi/core": "^1.4.2",
     "feather-icons": "4",
@@ -28,6 +29,7 @@
   },
   "peerDependencies": {
     "@csstools/postcss-global-data": "^2.1.0",
+    "@vueuse/core": "^10.4.1",
     "@wagmi/chains": "^1.8.0",
     "@wagmi/core": "^1.4.2",
     "feather-icons": "4",
