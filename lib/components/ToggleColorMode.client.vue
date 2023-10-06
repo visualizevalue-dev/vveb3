@@ -6,6 +6,7 @@
 </template>
 
 <script setup>
+import { ref, watch, onMounted } from 'vue'
 import { useColorMode } from '@vueuse/core'
 
 const mode = useColorMode() // Ref<'dark' | 'light'>
