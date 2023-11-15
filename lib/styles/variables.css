@@ -93,12 +93,7 @@
   --z-sidebar: 65;
 
   /* LAYOUT */
-  --navbar-height: calc(var(--size-9) + var(--size-3));
-  --scrollbar-width: calc(var(--size-0) + var(--size-1));
-  --sidebar-width-md: max(22rem, 33vw);
-  --content-width-md: calc(100vw - var(--sidebar-width-md));
-  --content-width-xs: 50rem;
-  --content-slim: 80rem;
+  --content-width: 60rem;
   --sidebar-height-sm: calc(var(--size-9) + var(--size-3));
   --sidebar-offset-top-sm: var(--navbar-height);
 
