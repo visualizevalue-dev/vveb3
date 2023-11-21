@@ -67,6 +67,8 @@ dialog {
       position: absolute;
       top: var(--size-4);
       right: var(--size-4);
+      width: var(--size-4);
+      height: var(--size-4);
     }
   }
 

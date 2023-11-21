@@ -29,6 +29,10 @@
   --semi-light: rgba(255, 255, 255, 0.8);
   --semi-dark: rgba(0, 0, 0, 0.8);
   --semi-shade: rgba(0, 0, 0, 0.4);
+  --opaque-white: rgba(255, 255, 255, 0.9);
+  --opaque-black: rgba(0, 0, 0, 0.9);
+  --transparent-white: rgba(255, 255, 255, 0);
+  --transparent-black: rgba(0, 0, 0, 0);
 
   /* COLORS */
   --red: #EF4444;
@@ -56,6 +60,7 @@
   --font-xs: calc(var(--size-2) + var(--size-0)*2);
   --font-sm: var(--size-3);
   --font-base: var(--size-4);
+  --font-md: var(--size-5);
   --font-lg: var(--size-6);
   --font-title: min(calc(var(--size-4) + 1vw * 2), var(--size-7));
   --font-display: min(calc(var(--size-6) + 1vw * 2), var(--size-9));
@@ -76,12 +81,14 @@
   --speed-slower: 1.4s;
 
   /* BORDERS */
-  --border: 2px solid var(--gray-z-4);
-  --border-dark: 2px solid var(--gray-z-2);
-  --border-light: 2px solid var(--gray-z-6);
+  --border-color: var(--gray-z-4);
+  --border: 1px solid var(--border-color);
+  --border-dark: 1px solid var(--gray-z-2);
+  --border-light: 1px solid var(--gray-z-6);
 
   --shadow: 0 0.1em 0.3em 0 var(--semi-shade);
-  --border-shadow: 0 0 0 1px var(--gray-z-4);
+  --border-shadow: 0 0 0 1px var(--border-color);
+  --border-shadow-lg: 0 0 0 0.1em var(--border-color);
 
   /* BACKGROUNDS */
   --blur: blur(var(--size-1));

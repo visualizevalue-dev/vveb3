@@ -1,18 +1,16 @@
 <template>
   <span class="small upper" :class="{ avatar }">
     <img v-if="!hideAvatar && avatar" :src="avatar" />
-    <span>
-      {{ ens || display }}
-
+    <Address :address="address">
       <slot name="appendix" />
-    </span>
+    </Address>
   </span>
 </template>
 
 <script setup>
 import { computed } from 'vue'
 import { useEnsName, useEnsAvatar } from './../utils/use-wagmi'
-import shortAddress from './../utils/short-address'
+import Address from './Address.vue'
 
 const props = defineProps({
   address: String,
@@ -23,12 +21,6 @@ const address = computed(() => props.address)
 
 const ens = useEnsName(address)
 const avatar = useEnsAvatar(ens)
-
-const display = computed(() => {
-  if (ens.value) return ens.value
-
-  return shortAddress(address.value)
-})
 </script>
 
 <style lang="postcss" scoped>
