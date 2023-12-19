@@ -43,7 +43,7 @@
   --success: var(--green);
 
   /* SIZES */
-  --100vh: 100vh;
+  --100vh: 100dvh;
   --size-0: 0.125rem;
   --size-1: 0.25rem;
   --size-2: 0.5rem;
